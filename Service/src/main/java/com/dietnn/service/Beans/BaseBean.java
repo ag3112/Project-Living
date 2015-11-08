@@ -1,7 +1,5 @@
 package com.dietnn.service.beans;
 
-/**
- * Created by Intel on 11/8/2015.
- */
+/*A Marker interface for the declaring structure*/
 public interface BaseBean {
 }
