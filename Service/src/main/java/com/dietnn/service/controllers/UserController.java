@@ -14,20 +14,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class UserController{
+public class UserController {
 
     private Log logger = LogFactory.getLog(UserController.class);
 
     @RequestMapping(value = "/newUserRegistration", method = RequestMethod.POST, consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public ResponseBean createNewUser(@RequestBody @Valid User user, Errors errors) {
-        Map<String,String> errorMap = new HashMap<String,String>();
+        Map<String, String> errorMap = null;
         if (errors.hasErrors()) {
+            errorMap = new HashMap<String, String>();
             for (FieldError error : errors.getFieldErrors()) {
-                errorMap.put(error.getField(),error.getDefaultMessage());
+                errorMap.put(error.getField(), error.getDefaultMessage());
             }
         }
-        ResponseBean<User> response = new ResponseBean<User>(errorMap,user);
+        ResponseBean<User> response = new ResponseBean<User>(errorMap, user);
+        // Send the SMS to validate the phone Number !!
         return response;
     }
 
@@ -42,13 +44,15 @@ public class UserController{
     @RequestMapping(value = "/updateProfile", method = RequestMethod.POST, consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public ResponseBean updateProfile(@RequestBody @Valid User user, Errors errors) {
-        Map<String,String> errorMap = new HashMap<String,String>();
+        Map<String, String> errorMap = null;
         if (errors.hasErrors()) {
+            errorMap = new HashMap<String, String>();
             for (FieldError error : errors.getFieldErrors()) {
-                errorMap.put(error.getField(),error.getDefaultMessage());
+                errorMap.put(error.getField(), error.getDefaultMessage());
             }
         }
-        ResponseBean<User> response = new ResponseBean<User>(errorMap,user);
+        ResponseBean<User> response = new ResponseBean<User>(errorMap, user);
+        // Update the profile !!
         return response;
     }
 }
