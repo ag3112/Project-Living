@@ -10,19 +10,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>DietNN-Service</artifactId>
+    <packaging>war</packaging>
 
-    <!-- To ensure that the maven build not get fail due to missing web.xml-->
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
+    <dependencies>
+        <!-- For cannot file Servlet Exception & security -->
+        <dependency>
+             <groupId>javax.servlet</groupId>
+             <artifactId>javax.servlet-api</artifactId>
+             <version>3.1.0</version>
+             <scope>provided</scope>
+         </dependency>
+    </dependencies>
 
 </project>
